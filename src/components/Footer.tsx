@@ -12,7 +12,7 @@ export const Footer = () => {
           
           <div className="flex items-center gap-4">
             <motion.a
-              href="https://github.com"
+              href="https://github.com/Anusriya/processor-lifecycle-est#"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"

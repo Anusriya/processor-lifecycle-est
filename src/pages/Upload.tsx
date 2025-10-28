@@ -37,27 +37,53 @@ const Upload = () => {
     }
   };
 
-  const handleAnalyze = () => {
-    if (!file) {
-      toast({
-        title: "No file selected",
-        description: "Please upload a CSV file first.",
-        variant: "destructive",
-      });
-      return;
+ const handleAnalyze = async () => {
+  if (!file) {
+    toast({
+      title: "No file selected",
+      description: "Please upload a CSV file first.",
+      variant: "destructive",
+    });
+    return;
+  }
+
+  setUploading(true);
+
+  try {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const response = await fetch("http://127.0.0.1:5000/predict", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to process file");
     }
 
-    setUploading(true);
-    // Simulate upload process
-    setTimeout(() => {
-      setUploading(false);
-      setUploadComplete(true);
-      toast({
-        title: "Success!",
-        description: "Data successfully processed.",
-      });
-    }, 2000);
-  };
+    const result = await response.json(); // this contains classified rows
+
+    // Save result to localStorage to pass to dashboard
+    localStorage.setItem("classifiedData", JSON.stringify(result));
+
+    setUploadComplete(true);
+
+    toast({
+      title: "Success!",
+      description: "Data successfully classified.",
+    });
+  } catch (error) {
+    toast({
+      title: "Error processing file",
+      description: String(error),
+      variant: "destructive",
+    });
+  }
+
+  setUploading(false);
+};
+
 
   return (
     <div className="min-h-screen">
