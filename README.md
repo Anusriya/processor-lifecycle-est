@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# ReCore - software engineering project
 
 ## Project info
 
