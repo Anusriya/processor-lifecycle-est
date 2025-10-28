@@ -35,11 +35,12 @@ ReCore consists of three main modules:
 
 ### **Backend**
 - Flask (REST API)
-- Flask-CORS
+- Flask-CORS for API Integration
 - MongoDB (via PyMongo)
 
 ### **Frontend**
-- React.js
+- React.js (Vite)
+- Typescript
 - Tailwind CSS
 - Framer Motion
 - Lucide React Icons
