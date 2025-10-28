@@ -1,73 +1,53 @@
-# ReCore - software engineering project
+# ReCore — Processor Lifecycle Estimator
 
-## Project info
+**ReCore** is an AI-powered desktop analytics system that predicts and visualizes the **lifecycle and performance health** of GPUs or processors based on their operational metrics.  
+It combines **Machine Learning**, **Data Visualization**, and **Full-Stack Integration** to deliver insights into hardware longevity and efficiency.
 
-**URL**: https://lovable.dev/projects/ef207082-6020-460d-9362-a9b38c8b94b5
+---
 
-## How can I edit this code?
+## Project Overview
 
-There are several ways of editing your application.
+ReCore consists of three main modules:
 
-**Use Lovable**
+1. 🧮 **Backend (Flask)** — Handles CSV file uploads, processes them using a pre-trained ML model, and optionally stores results in MongoDB.  
+2. 💻 **Frontend (React.js)** — User interface where CSVs are uploaded, analyzed, and linked to the dashboard.  
+3. 📊 **Dashboard (Streamlit)** — Interactive visualization layer that displays performance trends, lifecycle predictions, and allows PDF report downloads.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ef207082-6020-460d-9362-a9b38c8b94b5) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## ⚙️ Key Features
 
-**Use your preferred IDE**
+✅ Upload GPU/processor usage data (CSV format)  
+✅ Predict processor lifecycle class using **K-Means Clustering**  
+✅ Visualize metrics such as average power, memory, and thermal performance  
+✅ Generate and download analytical **PDF reports**  
+✅ MongoDB integration for result storage
+✅ Interactive and modern UI built with React  
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+##  Tech Stack
 
-Follow these steps:
+### **Machine Learning**
+- Scikit-learn (K-Means Clustering)
+- Joblib (for saving trained models)
+- Pandas, NumPy (data preprocessing)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### **Backend**
+- Flask (REST API)
+- Flask-CORS
+- MongoDB (via PyMongo)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
+### **Frontend**
+- React.js
 - Tailwind CSS
+- Framer Motion
+- Lucide React Icons
 
-## How can I deploy this project?
+### **Dashboard**
+- Streamlit
+- Plotly / Matplotlib
+- ReportLab (for PDF generation)
 
-Simply open [Lovable](https://lovable.dev/projects/ef207082-6020-460d-9362-a9b38c8b94b5) and click on Share -> Publish.
+--
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
