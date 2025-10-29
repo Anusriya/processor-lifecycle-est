@@ -69,16 +69,17 @@ try:
 except Exception as e:
     MODELS_LOADED = False
 
-
 USE_MONGO = True
 try:
-    client = MongoClient("mongodb://localhost:27017/", serverSelectionTimeoutMS=2000)
+    MONGO_URI = os.getenv("MONGODB_URI", "")
+    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=2000)
     db = client["recore_db"]
     collection = db["classified_results"]
     client.server_info()
 except Exception:
     USE_MONGO = False
     collection = None
+
 
 
 st.sidebar.title(" Navigation")
