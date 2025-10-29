@@ -53,7 +53,8 @@ const Upload = () => {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await fetch("http://127.0.0.1:5000/predict", {
+      const response = await fetch("https://processor-lifecycle-est.onrender.com/predict", {
+
         method: "POST",
         body: formData,
       });
@@ -212,13 +213,13 @@ const Upload = () => {
                   </div>
 
                   <Button
-                    size="lg"
-                    onClick={() => window.open("http://localhost:8501", "_blank")}
-                    className="glow-effect-strong"
-                  >
-                    <ExternalLink className="mr-2 h-5 w-5" />
-                    Open Dashboard
-                  </Button>
+  size="lg"
+  disabled
+  className="glow-effect-strong"
+>
+  Dashboard Coming Soon
+</Button>
+
 
                   <Button
                     variant="outline"
