@@ -14,8 +14,13 @@ scaler = joblib.load("scaler.joblib")
 label_mapping = joblib.load("label_mapping.joblib")
 
 # Connect to MongoDB
-client = MongoClient("mongodb://localhost:27017/")
-db = client["recore_db"]
+import os
+
+MONGO_URI = os.environ.get("MONGO_URI", "mongodb://localhost:27017/recore_db")
+client = MongoClient(MONGO_URI)
+
+db = client.get_database()  # auto uses DB from URI
+
 collection = db["classified_results"]
 
 
@@ -56,4 +61,5 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, host="0.0.0.0", port=5000)
+

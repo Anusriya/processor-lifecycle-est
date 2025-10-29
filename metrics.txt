@@ -19,3 +19,8 @@ Saved model to backend\models\kmeans_model.joblib
 Saved scaler to backend\models\scaler.joblib
 Saved label mapping to backend\models\label_mapping.joblib
 PS D:\Processor_lifecycle_est\backend> 
+
+
+
+
+mongodb+srv://admin:<StrongPassword123>@processor-db.yvtedbz.mongodb.net/?appName=processor-db
