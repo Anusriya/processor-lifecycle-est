@@ -337,7 +337,7 @@ def recycling_category(row):
 df["Maintenance"] = df.apply(get_recommendations, axis=1)
 df["Recycling"] = df.apply(recycling_category, axis=1)
 
-display_cols = ["GPU_ID","cluster","health_class","life_score","Maintenance","Recycling",
+display_cols = ["GPU_ID","health_class","life_score","Maintenance","Recycling",
                 "usage_hours","avg_power_watts","peak_power_watts","avg_sm_pct","avg_mem_pct","thermal_score"]
 display_cols = [c for c in display_cols if c in df.columns]
 st.dataframe(df[display_cols].reset_index(drop=True), use_container_width=True, height=400)
