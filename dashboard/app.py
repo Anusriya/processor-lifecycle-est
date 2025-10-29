@@ -108,15 +108,21 @@ if USE_MONGO:
         records = list(collection.find({"batch_id": latest_batch}, {"_id": 0}))
         df = pd.DataFrame(records)
 
-if USE_MONGO and collection:
-    data = list(collection.find({}, {"_id": 0}))
-    if len(data) > 0:
-        df = pd.DataFrame(data)
-        st.success("✅ Data loaded from MongoDB Atlas!")
-    else:
-        st.warning("⚠️ No data found. Upload a CSV from the React app first.")
+if USE_MONGO and collection is not None:
+    try:
+        data = list(collection.find({}, {"_id": 0}))
+        if len(data) > 0:
+            df = pd.DataFrame(data)
+            st.success("✅ Data loaded from MongoDB Atlas!")
+        else:
+            st.warning("⚠️ No data found. Upload a CSV from the React app first.")
+    except Exception as e:
+        st.error(f"❌ MongoDB query failed: {e}")
+        st.stop()
 else:
-    st.error("❌ MongoDB not available.")
+    st.info("⏳ Waiting for data from the React application...")
+    st.stop()
+
 
 
 expected_cols = ["overclock_proxy", "usage_hours", "avg_power_watts", "peak_power_watts",
