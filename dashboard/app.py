@@ -108,9 +108,16 @@ if USE_MONGO:
         records = list(collection.find({"batch_id": latest_batch}, {"_id": 0}))
         df = pd.DataFrame(records)
 
-if df is None or df.empty:
-    st.info("⏳ Waiting for data from the React application...\n\nData is stored automatically when the user uploads metrics in the frontend.")
-    st.stop()
+if USE_MONGO and collection:
+    data = list(collection.find({}, {"_id": 0}))
+    if len(data) > 0:
+        df = pd.DataFrame(data)
+        st.success("✅ Data loaded from MongoDB Atlas!")
+    else:
+        st.warning("⚠️ No data found. Upload a CSV from the React app first.")
+else:
+    st.error("❌ MongoDB not available.")
+
 
 expected_cols = ["overclock_proxy", "usage_hours", "avg_power_watts", "peak_power_watts",
                  "avg_sm_pct", "avg_mem_pct", "thermal_score"]
