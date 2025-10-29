@@ -102,11 +102,23 @@ st.markdown("---")
 df = None
 
 
-if USE_MONGO and collection is not None:
+df = None
+
+if USE_MONGO:
     try:
-        data = list(collection.find({}, {"_id": 0}))
+        data = list(collection.find({}, {"_id": 0}).sort("_id", -1))
         if len(data) > 0:
             df = pd.DataFrame(data)
+
+            # fallback for cluster
+            if "cluster" not in df.columns:
+                df["cluster"] = "N/A"
+
+            # group by latest batch
+            if "batch_id" in df.columns:
+                batches = sorted(df["batch_id"].unique())
+                df = df[df["batch_id"] == batches[-1]]
+
             st.success("✅ Data loaded from MongoDB Atlas!")
         else:
             st.warning("⚠️ No data found. Upload a CSV from the React app first.")
@@ -119,9 +131,6 @@ else:
     st.stop()
 
 
-if df is None:
-    st.warning("No lifecycle data is available yet.")
-    st.stop()
 
 expected_cols = ["overclock_proxy", "usage_hours", "avg_power_watts", "peak_power_watts",
                  "avg_sm_pct", "avg_mem_pct", "thermal_score"]
