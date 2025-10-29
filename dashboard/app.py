@@ -101,12 +101,6 @@ st.markdown("---")
 
 df = None
 
-if USE_MONGO:
-    batches = collection.distinct("batch_id")
-    if len(batches) > 0:
-        latest_batch = sorted(batches)[-1]
-        records = list(collection.find({"batch_id": latest_batch}, {"_id": 0}))
-        df = pd.DataFrame(records)
 
 if USE_MONGO and collection is not None:
     try:
