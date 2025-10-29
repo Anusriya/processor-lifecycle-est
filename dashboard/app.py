@@ -80,17 +80,6 @@ except Exception:
     USE_MONGO = False
     collection = None
 
-st.subheader("Debugging Output")
-
-try:
-    count = collection.count_documents({})
-    st.write("Documents in collection:", count)
-
-    sample = list(collection.find({}).limit(3))
-    st.write("Sample docs:", sample)
-except Exception as e:
-    st.error(str(e))
-
 
 st.sidebar.title(" Navigation")
 st.sidebar.markdown("Use the sections below to jump to parts of the dashboard:")
