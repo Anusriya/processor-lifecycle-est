@@ -320,7 +320,7 @@ st.markdown("---")
 
 # -------- Maintenance & Recycling ----------
 st.markdown("<a name='maintenance'></a>", unsafe_allow_html=True)
-st.markdown("### 🔧 Maintenance & Recycling Recommendations")
+st.markdown("### Maintenance & Recycling Recommendations")
 
 def get_recommendations(row):
     recs = []
@@ -359,7 +359,13 @@ st.sidebar.markdown("---")
 st.markdown("### GPU Filter Panel")
 gpu_filter = st.multiselect("Select specific GPUs to display", df["GPU_ID"].unique())
 filtered_df = df[df["GPU_ID"].isin(gpu_filter)] if gpu_filter else df
-st.dataframe(filtered_df, use_container_width=True, height=300)
+
+# Hide unwanted columns
+hide_cols = ["Predicted_Class", "cluster"]
+filtered_display = filtered_df.drop(columns=[c for c in hide_cols if c in filtered_df.columns])
+
+st.dataframe(filtered_display, use_container_width=True, height=300)
+
 
 # --- Correlation Heatmap ---
 st.markdown("### Correlation Heatmap (Feature Relationships)")
