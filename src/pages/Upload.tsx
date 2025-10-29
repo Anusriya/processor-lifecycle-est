@@ -213,12 +213,13 @@ const Upload = () => {
                   </div>
 
                   <Button
-                  onClick={() => window.open("https://proceappr-lifecycle-est-ynj6tsp88wycycxy3jctgf.streamlit.app/", "_blank")}
+  onClick={() => window.open("https://proceappr-lifecycle-est-ynj6tsp88wycycxy3jctgf.streamlit.app/", "_blank")}
   size="lg"
   className="glow-effect-strong"
 >
   Open Dashboard
 </Button>
+
 
 
                   <Button
