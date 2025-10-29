@@ -116,6 +116,7 @@ if USE_MONGO and collection is not None:
             st.success("✅ Data loaded from MongoDB Atlas!")
         else:
             st.warning("⚠️ No data found. Upload a CSV from the React app first.")
+            st.stop()
     except Exception as e:
         st.error(f"❌ MongoDB query failed: {e}")
         st.stop()
@@ -124,6 +125,9 @@ else:
     st.stop()
 
 
+if df is None:
+    st.warning("No lifecycle data is available yet.")
+    st.stop()
 
 expected_cols = ["overclock_proxy", "usage_hours", "avg_power_watts", "peak_power_watts",
                  "avg_sm_pct", "avg_mem_pct", "thermal_score"]
