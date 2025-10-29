@@ -19,7 +19,8 @@ import os
 MONGO_URI = os.environ.get("MONGO_URI", "mongodb://localhost:27017/recore_db")
 client = MongoClient(MONGO_URI)
 
-db = client.get_database()  # auto uses DB from URI
+db = client["processor_db"]
+  # auto uses DB from URI
 
 collection = db["classified_results"]
 
