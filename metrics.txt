@@ -1,0 +1,21 @@
+D:\Processor_lifecycle_est\backend\train_kmeans.py:9: SyntaxWarning: invalid escape sequence '\p'
+  CLEANED_FILE = Path("data\processed\cleaned_features.csv")
+Shape: (97024, 7)
+Inertia: 7183.8704
+Silhouette score: 0.6843
+Cluster counts:
+0    55928
+1    27086
+2    14010
+Name: count, dtype: int64
+Centroids (scaled space):
+[[1.07219442e-04 6.52978848e-03 1.32651731e-01 1.27900125e-01
+  5.54803431e-02 7.99889166e-03 3.92887469e-02]
+ [5.55111512e-16 4.66138365e-03 4.22500174e-01 6.52243931e-01
+  3.82001183e-01 1.70254580e-01 6.16912206e-01]
+ [1.00000000e+00 1.85036883e-02 5.67729293e-01 6.04688809e-01
+  7.65118487e-01 3.25984650e-01 5.88920083e-01]]
+Saved model to backend\models\kmeans_model.joblib
+Saved scaler to backend\models\scaler.joblib
+Saved label mapping to backend\models\label_mapping.joblib
+PS D:\Processor_lifecycle_est\backend> 

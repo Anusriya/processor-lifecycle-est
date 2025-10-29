@@ -1,4 +1,3 @@
-# processor-lifecycle-est/dashboard/app.py
 import streamlit as st
 import pandas as pd
 import joblib
@@ -12,14 +11,12 @@ from pymongo import MongoClient
 import os
 import json
 
-# -------- PAGE CONFIG --------------------------------
 st.set_page_config(
     page_title="Processor Lifecycle Dashboard",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# -------- CSS (glass + dark theme) -------------------
 st.markdown(
     """
 <style>
@@ -53,7 +50,6 @@ st.markdown(
 )
 
 
-# -------- Try loading models from ../backend/models --------
 MODELS_LOADED = False
 kmeans = None
 scaler = None
@@ -73,7 +69,7 @@ try:
 except Exception as e:
     MODELS_LOADED = False
 
-# -------- Connect to MongoDB (preferred source) ----------
+
 USE_MONGO = True
 try:
     client = MongoClient("mongodb://localhost:27017/", serverSelectionTimeoutMS=2000)
@@ -84,26 +80,24 @@ except Exception:
     USE_MONGO = False
     collection = None
 
-# -------- SIDEBAR NAVIGATION ----------
+
 st.sidebar.title(" Navigation")
 st.sidebar.markdown("Use the sections below to jump to parts of the dashboard:")
 
 sections = {
-    "📊 Health Summary": "#health-summary",
-    "📈 Charts & Insights": "#charts",
-    "🧠 AI Insights": "#ai-insights",
-    "🔧 Maintenance & Recycling": "#maintenance",
-    "⚖️ GPU Comparison": "#comparison"
+    "Health Summary": "#health-summary",
+    "Charts & Insights": "#charts",
+    "AI Insights": "#ai-insights",
+    "Maintenance & Recycling": "#maintenance",
+    "GPU Comparison": "#comparison"
 }
 
 for label, anchor in sections.items():
     st.sidebar.markdown(f"[{label}]({anchor})")
 
-# -------- MAIN TITLE ----------
 st.title(" Processor Lifecycle & Health Dashboard")
 st.markdown("---")
 
-# -------- Data from MongoDB ----------
 df = None
 
 if USE_MONGO:
@@ -117,7 +111,6 @@ if df is None or df.empty:
     st.info("⏳ Waiting for data from the React application...\n\nData is stored automatically when the user uploads metrics in the frontend.")
     st.stop()
 
-# -------- Ensure columns exist used by UI ----------
 expected_cols = ["overclock_proxy", "usage_hours", "avg_power_watts", "peak_power_watts",
                  "avg_sm_pct", "avg_mem_pct", "thermal_score"]
 for c in expected_cols:
@@ -331,16 +324,16 @@ st.dataframe(df[display_cols].reset_index(drop=True), use_container_width=True, 
 
 st.markdown("---")
 
-# -------- 🧠 AI Insights Section ----------
+# -------- AI Insights Section ----------
 st.markdown("<a name='ai-insights'></a>", unsafe_allow_html=True)
-st.markdown("## 🧠 AI Insights & Advanced Analytics")
+st.markdown("## AI Insights & Advanced Analytics")
 
 # --- GPU Filter Panel ---
-st.sidebar.markdown("### 🧠 AI Insights")
-st.sidebar.markdown("[🔍 GPU Filter Panel](#ai-insights)")
-st.sidebar.markdown("[📊 Correlation Heatmap](#ai-insights)")
-st.sidebar.markdown("[🚨 Anomaly Detection](#ai-insights)")
-st.sidebar.markdown("[🧩 3D Cluster Visualization](#ai-insights)")
+st.sidebar.markdown("### AI Insights")
+st.sidebar.markdown("[GPU Filter Panel](#ai-insights)")
+st.sidebar.markdown("[Correlation Heatmap](#ai-insights)")
+st.sidebar.markdown("[Anomaly Detection](#ai-insights)")
+st.sidebar.markdown("[3D Cluster Visualization](#ai-insights)")
 st.sidebar.markdown("---")
 
 st.markdown("### GPU Filter Panel")
@@ -499,4 +492,4 @@ if gpu1 != gpu2:
     
 
 st.markdown("---")
-st.caption("Powered by ReCore • Sustainable GPU Lifecycle Management 🌱")
+st.caption("Powered by ReCore • Sustainable GPU Lifecycle Management - Anusriya.S23BCE1360")

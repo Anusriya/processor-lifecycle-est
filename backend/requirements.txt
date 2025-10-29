@@ -1,0 +1,9 @@
+Flask==2.3.2
+flask-cors
+pymongo
+pandas
+joblib
+numpy
+gunicorn
+scikit-learn
+dnspython
