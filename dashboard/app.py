@@ -73,7 +73,7 @@ USE_MONGO = True
 try:
     MONGO_URI = os.getenv("MONGODB_URI", "")
     client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=2000)
-    db = client["recore_db"]
+    db = client["processor_db"]
     collection = db["classified_results"]
     client.server_info()
 except Exception:
