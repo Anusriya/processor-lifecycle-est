@@ -118,7 +118,7 @@ if USE_MONGO:
                 batches = sorted(df["batch_id"].unique())
                 df = df[df["batch_id"] == batches[-1]]
 
-            st.success("✅ Data loaded from MongoDB Atlas!")
+            
         else:
             st.warning("⚠️ No data found. Upload a CSV from the React app first.")
             st.stop()
